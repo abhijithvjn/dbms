@@ -1,0 +1,517 @@
+lab exercise #2 sailors:
+
+->	create table sailors(sid integer,sname varchar(20),rating integer,age integer,primary key(sid));
+		Table created.
+
+		SQL> desc sailors
+	 Name                                      Null?    Type
+	 ----------------------------------------- -------- ------------------
+	 SID                                       NOT NULL NUMBER(38)
+	 SNAME                                              VARCHAR2(20)
+ 	RATING                                             NUMBER(38)
+ 	AGE                                                NUMBER(38)
+
+
+->	create table boats(bid integer,bname varchar(20),color varchar(20),primary key(bid));
+		Table created.
+
+		SQL> desc boats
+	 Name                                      Null?    Type
+ 	----------------------------------------- -------- -------------------
+ 	BID                                       NOT NULL NUMBER(38)
+ 	BNAME                                              VARCHAR2(20)
+ 	COLOR                                              VARCHAR2(20)
+
+->	create table reserves(sid integer references sailors(sid),bid integer references boats(bid),day date);
+		Table created.
+
+		SQL> desc reserves;
+	 Name                                      Null?    Type
+ 	----------------------------------------- -------- ------------------
+	 SID                                                NUMBER(38)
+	 BID                                                NUMBER(38)
+	 DAY                                                DATE
+	
+->	insert into sailors values(&sid,'&sname',&rating,&age);
+
+	Enter value for sid: 22
+	Enter value for sname: dustin
+	Enter value for rating: 7
+	Enter value for age: 45
+	old   1: insert into sailors values(&sid,'&sname',&rating,&age)
+	new   1: insert into sailors values(22,'dustin',7,45)
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 29
+	Enter value for sname: brutus
+	Enter value for rating: 1
+	Enter value for age: 33
+	old   1: insert into sailors values(&sid,'&sname',&rating,&age)
+	new   1: insert into sailors values(29,'brutus',1,33)
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 31
+	Enter value for sname: lubber
+	Enter value for rating: 8
+	Enter value for age: 55.5
+	old   1: insert into sailors values(&sid,'&sname',&rating,&age)
+	new   1: insert into sailors values(31,'lubber',8,55.5)
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 32
+	Enter value for sname: andy
+	Enter value for rating: 8
+	Enter value for age: 25.5
+	old   1: insert into sailors values(&sid,'&sname',&rating,&age)
+	new   1: insert into sailors values(32,'andy',8,25.5)
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 58
+	Enter value for sname: rusty
+	Enter value for rating: 10
+	Enter value for age: 35
+	old   1: insert into sailors values(&sid,'&sname',&rating,&age)
+	new   1: insert into sailors values(58,'rusty',10,35)
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 64
+	Enter value for sname: horataio
+	Enter value for rating: 7
+	Enter value for age: 35
+	old   1: insert into sailors values(&sid,'&sname',&rating,&age)
+	new   1: insert into sailors values(64,'horataio',7,35)
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 71
+	Enter value for sname: zorba
+	Enter value for rating: 10
+	Enter value for age: 16
+	old   1: insert into sailors values(&sid,'&sname',&rating,&age)
+	new   1: insert into sailors values(71,'zorba',10,16)
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 74
+	Enter value for sname: horataio
+	Enter value for rating: 7
+	Enter value for age:35 
+
+	old   1: insert into sailors values(&sid,'&sname',&rating,&age)
+	new   1: insert into sailors values(74,'horataio',9,35)
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 85
+	Enter value for sname: art
+	Enter value for rating:3 
+
+	Enter value for age: 25.5
+	old   1: insert into sailors values(&sid,'&sname',&rating,&age)
+	new   1: insert into sailors values(85,'art',3,25.5)
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 95
+	Enter value for sname: bob
+	Enter value for rating: 3
+	Enter value for age: 63.5
+	old   1: insert into sailors values(&sid,'&sname',&rating,&age)
+	new   1: insert into sailors values(95,'bob',3,63.5)
+
+	1 row created.
+
+
+	
+->	SQL> insert into boats values(&bid,'&bname','&color');
+
+	Enter value for bid: 101
+	Enter value for bname: interlake
+	Enter value for color: blue
+	old   1: insert into boats values(&bid,'&bname','&color')
+	new   1: insert into boats values(101,'interlake','blue')
+
+	1 row created.
+
+	SQL> /
+	Enter value for bid: 102
+	Enter value for bname: interlake
+	Enter value for color: red
+	old   1: insert into boats values(&bid,'&bname','&color')
+	new   1: insert into boats values(102,'interlake','red')
+
+	1 row created.
+
+	SQL> /
+	Enter value for bid: 103
+	Enter value for bname: clipper
+	Enter value for color: green
+	old   1: insert into boats values(&bid,'&bname','&color')
+	new   1: insert into boats values(103,'clipper','green')
+
+	1 row created.
+
+	SQL> /
+	Enter value for bid: 104
+	Enter value for bname: marine
+	Enter value for color: red
+	old   1: insert into boats values(&bid,'&bname','&color')
+	new   1: insert into boats values(104,'marine','red')
+
+	1 row created.
+
+->		SQL> desc boats
+	 Name                                      Null?    Type
+	 ----------------------------------------- -------- ------------------
+	 BID                                       NOT NULL NUMBER(38)
+	 BNAME                                              VARCHAR2(20)
+	 COLOR                                              VARCHAR2(20)
+
+->	SQL> insert into reserves values(&sid,&bid,'&date');
+
+	Enter value for sid: 22
+	Enter value for bid: 101
+	Enter value for date: 10-oct-98
+	old   1: insert into reserves values(&sid,&bid,'&date')
+	new   1: insert into reserves values(22,101,'10-oct-98')
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 22
+	Enter value for bid: 102
+	Enter value for date: 10-oct-98
+	old   1: insert into reserves values(&sid,&bid,'&date')
+	new   1: insert into reserves values(22,102,'10-oct-98')
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 22
+	Enter value for bid: 103
+	Enter value for date: 08-oct-98
+	old   1: insert into reserves values(&sid,&bid,'&date')
+	new   1: insert into reserves values(22,103,'08-oct-98')
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 22
+	Enter value for bid: 104
+	Enter value for date: 07-oct-98
+	old   1: insert into reserves values(&sid,&bid,'&date')
+	new   1: insert into reserves values(22,104,'07-oct-98')
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 31
+	Enter value for bid: 102
+	Enter value for date: 10-nov-98
+	old   1: insert into reserves values(&sid,&bid,'&date')
+	new   1: insert into reserves values(31,102,'10-nov-98')
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 31
+	Enter value for bid: 103
+	Enter value for date: 06-nov-98
+	old   1: insert into reserves values(&sid,&bid,'&date')
+	new   1: insert into reserves values(31,103,'06-nov-98')
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 31
+	Enter value for bid: 104
+	Enter value for date: 12-nov-98
+	old   1: insert into reserves values(&sid,&bid,'&date')
+	new   1: insert into reserves values(31,104,'12-nov-98')
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 64
+	Enter value for bid: 101
+	Enter value for date: 05-sep-98
+	old   1: insert into reserves values(&sid,&bid,'&date')
+	new   1: insert into reserves values(64,101,'05-sep-98')
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 64
+	Enter value for bid: 102
+	Enter value for date: 08-sep-98
+	old   1: insert into reserves values(&sid,&bid,'&date')
+	new   1: insert into reserves values(64,102,'08-sep-98')
+
+	1 row created.
+
+	SQL> /
+	Enter value for sid: 74
+	Enter value for bid: 103
+	Enter value for date: 08-sep-98
+	old   1: insert into reserves values(&sid,&bid,'&date')
+	new   1: insert into reserves values(74,103,'08-sep-98')
+
+	1 row created.
+
+->  1. Show all records of Sailors?	
+
+	SQL> select * from sailors;
+
+       SID SNAME                    RATING        AGE
+	---------- -------------------- ---------- ----------
+        22 dustin                        7         45
+        29 brutus                        1         33
+        31 lubber                        8         56
+        32 andy                          8         26
+        58 rusty                        10         35
+        64 horataio                      7         35
+        71 zorba                        10         16
+        74 horataio                      9         35
+        85 art                           3         26
+        95 bob                           3         64
+
+-> 2. Show all records of Boats 
+
+
+	SQL> select * from boats;
+
+       BID BNAME                COLOR
+       ---------- -------------------- ----------
+       101 interlake            blue
+       102 interlake            red
+       103 clipper              green
+       104 marine               red
+
+->  3. Show all records of Reserves?
+	
+
+	SQL> select * from reserves;
+
+       SID        BID DAY
+	---------- ---------- ---------
+        22        101 10-OCT-98
+        22        102 10-OCT-98
+        22        103 08-OCT-98
+        22        104 07-OCT-98
+        31        102 10-NOV-98
+        31        103 06-NOV-98
+        31        104 12-NOV-98
+        64        101 05-SEP-98
+        64        102 08-SEP-98
+        74        103 08-SEP-98
+
+	10 rows selected.
+
+->  4. Find the names and ages of all sailors?	
+
+	SQL select sname,age from sailors;
+
+	SNAME                       AGE
+	-------------------- ----------
+	dustin                       45
+	brutus                       33
+	lubber                       56
+	andy                         26
+	rusty                        35
+	horataio                     35
+	zorba                       16
+	horataio                     35
+	art                          26
+	bob                          64
+
+-> 5. Find all sailors with a rating above 8?
+	
+	SQL> select * from sailors where rating>8;
+
+       SID SNAME                    RATING        AGE
+	---------- -------------------- ---------- ----------
+        58 rusty                        10         35
+        71 zorba                        10         16
+        74 horataio                      9         35
+
+-> 6. Find sailors name with a rating above 7 & age above 25?
+
+	SQL> select * from sailors where rating>7 and age>25;
+
+       SID SNAME                    RATING        AGE
+      ---------- -------------------- ---------- ----------
+        31 lubber                        8         56
+        32 andy                          8         26
+        58 rusty                        10         35
+        74 horataio                      9         35
+
+-> 7. Display all the names & colors of the boats?
+
+	SQL> select bname,color from boats;
+
+	BNAME                COLOR
+	-------------------- ------------------
+	interlake            blue
+	interlake            red
+	clipper              green
+	marine               red
+
+-> 8. Find all the boats with Red color?
+
+	SQL> select * from boats where color='red';
+
+       BID BNAME                COLOR
+	---------- -------------------- ----------------
+       102 interlake            red
+       104 marine               red
+
+-> 9. Find the names of sailors who have reserved boat number 103?
+
+	SQL> SELECT * FROM RESERVES WHERE BID=103;
+
+        SID        BID DAY
+	---------- ---------- ---------
+        22        103 08-OCT-98
+        31        103 06-NOV-98
+        74        103 08-SEP-98
+
+-> 10. Find the names of sailors ' who have reserved Red boat?
+
+	SQL> select s.sname from sailors s, boats b, reserves r where s.sid=r.sid AND r.bid=b.bid AND b.color='red';
+
+	SNAME
+	--------------------
+	dustin
+	dustin
+	lubber
+	lubber
+	horataio
+
+-> 11. Find the colors of boats reserved by Lubber?
+
+	
+
+->	SQL> select distinct s.sname from sailors s,Reserves R1,Reserves R2 where s.sid=R1.sid and s.sid=R2.sid and R1.bid!=R2.bid;
+	select count sid from sailors;
+	select count(distinct bid)from reserves;
+
+	COUNT(DISTINCTBID)
+	------------------
+	                 3
+	select count(distinct bid) from boats;
+
+	COUNT(DISTINCTBID)
+	------------------
+            	     4
+	
+	select sum(rating) from sailors;
+	SUM(RATING)
+	-----------
+    	     64
+	select sum(distinct rating) from sailors;
+
+	SUM(DISTINCTRATING)
+	-------------------
+   	              29
+	select sum(distinct age) from sailors;
+	SUM(DISTINCTAGE)
+	----------------
+     	        275
+->	SQL> select min(age) from sailors;
+
+ 	 MIN(AGE)
+	----------
+        16
+
+->	select * from sailors order by sname ;
+
+    	   SID SNAME                    RATING        AGE
+	---------- -------------------- ---------- ----------
+   	58 rusty                        10         35
+    	31 lubber                        8         56
+ 	64 horataio                      7         35
+        74 horataio                      7         35
+        29 dustin                        7         45
+     	22 brutus                        1         33
+      	95 bob                           3         64
+        85 art                           3         26
+        32 andy                          8         26
+        71  zorba                       10         16
+
+	10 rows selected.
+
+->	SQL> select * from sailors order by sname desc;
+
+       SID SNAME                    RATING        AGE
+	---------- -------------------- ---------- ----------
+        58 rusty                        10         35
+        31 lubber                        8         56
+        64 horataio                      7         35
+        74 horataio                      7         35
+        29 dustin                        7         45
+        22 brutus                        1         33
+        95 bob                           3         64
+        85 art                           3         26
+        32 andy                          8         26
+        71  zorba                       10         16
+
+	10 rows selected.
+
+->	display the details of sailors in the order of their rating
+ 
+	select * from sailors order by rating;
+
+         SID SNAME                    RATING        AGE
+	---------- -------------------- ---------- ----------
+        22 brutus                        1         33
+        85 art                           3         26
+        95 bob                           3         64
+        64 horataio                      7         35
+        29 dustin                        7         45
+        74 horataio                      7         35
+        31 lubber                        8         56
+        32 andy                          8         26
+        71  zorba                       10         16
+        58 rusty                        10         35
+
+	10 rows selected.
+
+->   SQL> select * from sailors order by rating desc;
+
+       SID SNAME                    RATING        AGE
+      ---------- -------------------- ---------- ----------
+        58 rusty                        10         35
+        71 zorba                        10         16
+        74 horataio                      9         35
+        31 lubber                        8         56
+        32 andy                          8         26
+        64 horataio                      7         35
+        22 dustin                        7         45
+        95 bob                           3         64
+        85 art                           3         26
+        29 brutus                        1         33
+
+	10 rows selected.
+
+
+
+
+->	SQL> commit;
+
+	Commit complete.
+
+

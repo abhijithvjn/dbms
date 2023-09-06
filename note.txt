@@ -1,0 +1,138 @@
+Creating a user:
+
+      #	create user username identified by password;
+
+	-> create user abhijith identified by abhijith07;
+		User created.
+
+Giving permission to a newly created user:
+
+      #	grant all privileges to username;
+
+	-> grant all privileges to abhijith;
+		Grant succeeded.
+
+Creating tables with integrity constraints(primary key,foreign key):
+
+	create table students(s_id integer,s_name varchar(20),age integer);
+		Table created.
+
+	create table student1(s_id integer primary key,s_name varchar(20),age integer);
+		Table created.
+
+	create table student2(s_id integer,s_name varchar(20),age integer,primary key(s_id));
+		Table created.
+
+Setting foreign key constraints:
+
+	create table course(s_id integer references student1,course_id varchar(6),marks integer);
+		Table created.
+  
+  Alternate method:
+
+        -> create table course1(s_id integer,course_id varchar(6),mark integer,foreign key(s_id) references student2(s_id));
+		Table created.
+
+Inserting records into a table:
+
+      #	insert into tablename values(value1,value2,...,valuen);
+
+	-> insert into student1 values(1,'Abhijith',23);
+		1 row created.
+
+	-> insert into course values(1,'20mca',50);
+		1 row created.
+
+To view contents of a table:
+
+      #	select * from tablename;
+
+	-> select * from student1;
+	
+	 S_ID S_NAME                      AGE
+         ----- -------------------- ----------
+            1 Abhijith                     23
+
+
+	-> select * from course;
+
+	 S_ID COURSE      MARKS
+	 ----- ------ ----------
+  	    1 20mca          50
+
+
+	-> insert into students values('Abhijith',2,23);
+
+Alternate method of inserting data:
+
+      #	insert into tablename(field1,field2,...,fieldn) values(value1,value2,...,valuen)
+
+	-> insert into student1(s_name,s_id,age) values('Adarsh',3,80);
+		1 row created.
+
+		
+		 select * from student1;
+
+ 	 S_ID S_NAME                      AGE
+	------ -------------------- ----------
+    	    1 Abhijith                     23
+       	    2 abhijith                     23
+    	    3 Adarsh                       80
+
+	-> insert into student1(s_id,s_name) values(125,'Amal');
+
+	 select * from student1;
+
+	 S_ID S_NAME                      AGE
+	----- -------------------- ----------
+    	    1 Abhijith                     23
+   	    2 abhijith                     23
+    	    3 Adarsh                       80
+  	  125 Amal
+
+
+
+	SQL> insert into student1 values(&s_id,'&s_name',&age);
+
+	Enter value for s_id: 5
+	Enter value for s_name: messi
+	Enter value for age: 35
+	old   1: insert into student1 values(&s_id,'&s_name',&age)
+	new   1: insert into student1 values(5,'messi',35)
+
+	1 row created.
+
+	SQL> /
+	Enter value for s_id: 6
+	Enter value for s_name: ronaldo
+	Enter value for age: 50
+	old   1: insert into student1 values(&s_id,'&s_name',&age)
+	new   1: insert into student1 values(6,'ronaldo',50)
+
+	1 row created.
+
+	SQL> /
+	Enter value for s_id: 7
+	Enter value for s_name: neymar
+	Enter value for age: 29
+	old   1: insert into student1 values(&s_id,'&s_name',&age)
+	new   1: insert into student1 values(7,'neymar',29)
+
+	1 row created.
+
+-> SQL> select table_name from user_tables;
+
+	TABLE_NAME
+	------------------------------
+	STUDENTS
+	STUDENT1
+	STUDENT2
+	COURSE
+	COURSE1
+	JOBS
+	REGIONS
+	SAILORS
+	BOATS
+	RESERVES
+
+10 rows selected.

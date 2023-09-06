@@ -1,0 +1,78 @@
+create table professor(pid integer primary key,pname varchar(20),salary integer);
+
+Table created.
+
+########
+  TRIGGER CREATION!
+
+
+CREATE OR REPLACE TRIGGER minSalary BEFORE
+INSERT ON professor
+FOR EACH ROW
+BEGIN
+	IF (:new.salary < 60000)
+		THEN RAISE_APPLICATION_ERROR (-20004,'Violation of Minimum Professor Salary');
+	END IF;
+END;
+/
+
+Trigger created.
+
+insert into professor values(1,'abhijith',20000);
+
+ERROR at line 1:
+ORA-20004: Violation of Minimum Professor Salary
+ORA-06512: at "ABHIJITH.MINSALARY", line 3
+ORA-04088: error during execution of trigger 'ABHIJITH.MINSALARY'
+
+###
+  BACKLOG
+
+CREATE TABLE professor_backlog AS select * from professor;
+
+Table created.
+
+CREATE OR REPLACE TRIGGER T1 AFTER DELETE ON professor
+FOR EACH ROW
+BEGIN
+INSERT INTO professor_backlog values(:old.pid,:old.pname,:old.salary);
+END;
+/
+
+Trigger created.
+
+DELETE FROM PROFESSOR_BACKLOG;
+
+SELECT * FROM PROFESSOR_BACKLOG;
+
+########
+
+insert into professor values(1,'abhijith',70000);
+
+SQL> SELECT * FROM PROFESSOR;
+
+	       PID PNAME                    SALARY
+	     ---------- -------------------- ----------
+  	         1 abhijith                  70000
+
+DELETE FROM PROFESSOR WHERE PID=1;
+
+1 row deleted.
+
+SQL> SELECT * FROM PROFESSOR;
+
+no rows selected.
+
+SELECT * FROM PROFESSOR_BACKLOG;
+
+	SQL> SELECT * FROM PROFESSOR_BACKLOG;
+
+	        PID PNAME                    SALARY
+             ---------- -------------------- ----------
+       		  1 abhijith                  70000
+
+
+########
+
+CREATE A 
+
